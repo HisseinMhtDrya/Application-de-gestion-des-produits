@@ -41,6 +41,18 @@
         class="form-control"
       />
     </div>
+    <div hidden class="col-sm-4 col-md-4 col-lg-4">
+      <select
+        class="form-control form-control-lg"
+        id="idCat"
+        name="idCat"
+        [(ngModel)]="updatedCatId"
+      >
+        <option *ngFor="let cat of categories" [value]="cat.idCat">
+          {{ cat.nomCat }}
+        </option>
+      </select>
+    </div>
     <div class="mt-2">
       <button type="submit" (click)="updateProduit()" class="btn btn-success">
         Modifer

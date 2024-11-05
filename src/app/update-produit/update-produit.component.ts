@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produit } from '../model/produit';
 import { ProduitService } from '../services/produit.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categorie } from '../model/categrie';
 
 @Component({
   selector: 'app-update-produit',
@@ -12,6 +13,8 @@ export class UpdateProduitComponent  implements OnInit{
 
 
   currentProduit: Produit = {};
+  categories! : Categorie[]; 
+  updatedCatId? : number;
 
   constructor(private produitService: ProduitService, 
     private activatedRoute : ActivatedRoute,
@@ -20,14 +23,22 @@ export class UpdateProduitComponent  implements OnInit{
 
 
   ngOnInit(): void {
-    this.currentProduit = this.produitService.consulterProduit(this.activatedRoute.snapshot. params['id']); 
-    console.log(this.currentProduit);
+    //this.categories = this.produitService.listeCategories();
+    this.produitService.consulterProduit(this.activatedRoute.snapshot. params['id']).subscribe(data =>{
+      this.currentProduit = data;
+    }); 
+    this.updatedCatId = this.currentProduit.categorie?.idCat;
   }
 
 
   updateProduit() {
-    this.produitService.updateProduit(this.currentProduit);
-    this.router.navigate(['/produits']);
+    //this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId!);
+    
+    this.produitService.updateProduit(this.currentProduit).subscribe(data => {
+      console.log("----Voici le produit modifier ", data);
+      this.router.navigate(['/produits']);
+    });
+  
   }
 
 }

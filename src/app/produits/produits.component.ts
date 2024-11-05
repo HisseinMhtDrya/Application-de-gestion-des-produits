@@ -8,18 +8,30 @@ import { ProduitService } from '../services/produit.service';
   styleUrl: './produits.component.css',
 })
 export class ProduitsComponent implements OnInit {
-  
   produits: Produit[] = [];
-  
-  constructor(private produitService:ProduitService ) {}
-  
+
+  constructor(private produitService: ProduitService) {}
+
   ngOnInit(): void {
-    this.produits = this.produitService.listeProduits()
+    this.chargerProduits()
+
+    //this.produits = this.produitService.listeProduits()
   }
 
   supprimerProduit(prod: Produit) {
-    let conf = confirm("Etes-vous sûr ?");
+    let conf = confirm('Etes-vous sûr ?');
     if (conf)
-    this.produitService.supprimerProduit(prod);
+      this.produitService.supprimerProduit(prod).subscribe((data) => {
+      console.log("-----Voici le produit supprimer", data)
+      this.chargerProduits()
+
+    });
+  }
+
+  chargerProduits() {
+    this.produitService.listeProduits().subscribe((prods) => {
+      console.log(prods);
+      this.produits = prods;
+    });
   }
 }
