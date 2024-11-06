@@ -8,14 +8,18 @@ import { AddProduitComponent } from './add-produit/add-produit.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RechercheParCategorieComponent } from './rechercheParCategorie/rechercheParCategorie.component';
+import { RechercheParNomComponent } from './rechercheParNom/rechercheParNom.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     ProduitsComponent,
     AddProduitComponent,
-    UpdateProduitComponent
-  ],
+    UpdateProduitComponent,
+    RechercheParCategorieComponent,
+      RechercheParNomComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

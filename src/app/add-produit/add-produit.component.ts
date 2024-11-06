@@ -18,23 +18,27 @@ export class AddProduitComponent implements OnInit {
   constructor(private produitService: ProduitService, private router: Router) {}
 
   ngOnInit(): void {
-    //this.categories = this.produitService.listeCategories();
+    this.produitService.listeCategories().subscribe(cats => {
+      this.categories = cats; 
+      console.log(cats); 
+    });  
   }
 
   addProduit() {
-   
+    this.produitService.consulterCategorie(this.newIdCat).subscribe(categorie =>{
+      console.log(categorie);
+      this.newCategorie = categorie;
+      this.newProduit.categorie = this.newCategorie;
 
-    //this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-    //this.newProduit.categorie = this.newCategorie;
-
-    if(this.areAllFieldsFilled(this.newProduit)){
-      this.produitService.ajouterProduit(this.newProduit).subscribe(data => {
-        console.log("-------Produit ajouter ", data);
-        this.router.navigate(['/produits'])
-      });
-    }else{
-      alert("Veuillez remplir tous les champs");
-    }
+      if(this.areAllFieldsFilled(this.newProduit)){
+        this.produitService.ajouterProduit(this.newProduit).subscribe(data => {
+          console.log("-------Produit ajouter ", data);
+          this.router.navigate(['/produits'])
+        });
+      }else{
+        alert("Veuillez remplir tous les champs");
+      }
+    });
   }
 
   areAllFieldsFilled(obj: Produit): boolean {
