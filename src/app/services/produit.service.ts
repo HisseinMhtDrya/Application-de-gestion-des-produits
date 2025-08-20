@@ -17,7 +17,7 @@ export class ProduitService {
 
   produit!: Produit;
 
-  apiURLCat: string = 'http://localhost:8080/produits/api/';
+  apiURLCat: string = 'http://localhost:9000/produits/api/';
   //categories: Categorie[];
 
   constructor(private http: HttpClient) {}
