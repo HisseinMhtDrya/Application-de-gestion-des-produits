@@ -3,10 +3,10 @@ import { Produit } from '../model/produit';
 import { ProduitService } from '../services/produit.service';
 
 @Component({
-    selector: 'app-produits',
-    templateUrl: './produits.component.html',
-    styleUrl: './produits.component.css',
-    standalone: false
+  selector: 'app-produits',
+  templateUrl: './produits.component.html',
+  styleUrls: ['./produits.component.css'],
+  standalone: false
 })
 export class ProduitsComponent implements OnInit {
   produits: Produit[] = [];
@@ -14,24 +14,28 @@ export class ProduitsComponent implements OnInit {
   constructor(private produitService: ProduitService) {}
 
   ngOnInit(): void {
-    this.chargerProduits()
-
+    this.chargerProduits();
   }
 
   supprimerProduit(prod: Produit) {
-    let conf = confirm('Etes-vous sûr ?');
-    if (conf)
-      this.produitService.supprimerProduit(prod).subscribe((data) => {
-      console.log("-----Voici le produit supprimer", data)
-      this.chargerProduits()
-
-    });
+    if (confirm('Etes-vous sûr ?')) {
+      this.produitService.supprimerProduit(prod).subscribe({
+        next: (data) => {
+          console.log('Produit supprimé', data);
+          this.chargerProduits();
+        },
+        error: (err) => console.error(err)
+      });
+    }
   }
 
   chargerProduits() {
-    this.produitService.listeProduits().subscribe((prods) => {
-      console.log(prods);
-      this.produits = prods;
+    this.produitService.listeProduits().subscribe({
+      next: (prods) => {
+        console.log(prods);
+        this.produits = prods;
+      },
+      error: (err) => console.error(err)
     });
   }
 }

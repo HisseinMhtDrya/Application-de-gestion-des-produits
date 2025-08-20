@@ -5,14 +5,20 @@ import { Router } from '@angular/router';
 import { Categorie } from '../model/categrie';
 
 @Component({
-    selector: 'app-add-produit',
-    templateUrl: './add-produit.component.html',
-    styleUrl: './add-produit.component.css',
-    standalone: false
+  selector: 'app-add-produit',
+  templateUrl: './add-produit.component.html',
+  styleUrls: ['./add-produit.component.css'],
+  standalone: false
 })
 export class AddProduitComponent implements OnInit {
-  newProduit: Produit = {};
-  newCategorie!: Categorie;
+  newProduit: Produit = {
+    idProduit: 0,
+    nomProduit: '',
+    descriptionProduit: '',
+    prixProduit: 0,
+    dateCreation: new Date(),
+    categorie: undefined
+  };
   categories!: Categorie[];
   newIdCat!: number;
 
@@ -20,35 +26,37 @@ export class AddProduitComponent implements OnInit {
 
   ngOnInit(): void {
     this.produitService.listeCategories().subscribe(cats => {
-      this.categories = cats; 
-      console.log(cats); 
-    });  
+      this.categories = cats;
+      console.log('Catégories chargées :', cats);
+    });
   }
 
   addProduit() {
-    this.produitService.consulterCategorie(this.newIdCat).subscribe(categorie =>{
-      console.log(categorie);
-      this.newCategorie = categorie;
-      this.newProduit.categorie = this.newCategorie;
+    if (!this.newIdCat) {
+      alert('Veuillez sélectionner une catégorie');
+      return;
+    }
 
-      if(this.areAllFieldsFilled(this.newProduit)){
+    this.produitService.consulterCategorie(this.newIdCat).subscribe(categorie => {
+      this.newProduit.categorie = categorie;
+
+      if (this.areAllFieldsFilled(this.newProduit)) {
         this.produitService.ajouterProduit(this.newProduit).subscribe(data => {
-          console.log("-------Produit ajouter ", data);
-          this.router.navigate(['/produits'])
+          console.log('Produit ajouté :', data);
+          this.router.navigate(['/produits']);
         });
-      }else{
-        alert("Veuillez remplir tous les champs");
+      } else {
+        alert('Veuillez remplir tous les champs');
       }
     });
   }
 
   areAllFieldsFilled(obj: Produit): boolean {
     return Object.values(obj).every(value => {
-        if (typeof value === 'object' && value !== null) {
-            // Si une valeur est un objet, vérifier ses champs récursivement
-            return this.areAllFieldsFilled(value);
-        }
-        return value !== '' && value !== null && value !== undefined;
+      if (typeof value === 'object' && value !== null) {
+        return this.areAllFieldsFilled(value);
+      }
+      return value !== '' && value !== null && value !== undefined;
     });
-}
+  }
 }

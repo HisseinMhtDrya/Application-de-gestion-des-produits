@@ -1,4 +1,4 @@
 export interface Categorie {
-    idCat?: number;
-    nomCat?: string;
+  idCat?: number;
+  nomCat?: string;
 }
