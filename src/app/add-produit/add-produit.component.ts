@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { Categorie } from '../model/categrie';
 
 @Component({
-  selector: 'app-add-produit',
-  templateUrl: './add-produit.component.html',
-  styleUrl: './add-produit.component.css',
+    selector: 'app-add-produit',
+    templateUrl: './add-produit.component.html',
+    styleUrl: './add-produit.component.css',
+    standalone: false
 })
 export class AddProduitComponent implements OnInit {
   newProduit: Produit = {};

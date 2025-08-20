@@ -5,9 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categorie } from '../model/categrie';
 
 @Component({
-  selector: 'app-update-produit',
-  templateUrl: './update-produit.component.html',
-  styleUrl: './update-produit.component.css'
+    selector: 'app-update-produit',
+    templateUrl: './update-produit.component.html',
+    styleUrl: './update-produit.component.css',
+    standalone: false
 })
 export class UpdateProduitComponent  implements OnInit{
 

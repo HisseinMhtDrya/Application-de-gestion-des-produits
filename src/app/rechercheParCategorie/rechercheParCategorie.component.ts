@@ -4,8 +4,9 @@ import { Categorie } from '../model/categrie';
 import { ProduitService } from '../services/produit.service';
 
 @Component({
-  selector: 'app-rechercheParCategorie',
-  templateUrl: './rechercheParCategorie.component.html',
+    selector: 'app-rechercheParCategorie',
+    templateUrl: './rechercheParCategorie.component.html',
+    standalone: false
 })
 export class RechercheParCategorieComponent implements OnInit {
   produits!: Produit[];

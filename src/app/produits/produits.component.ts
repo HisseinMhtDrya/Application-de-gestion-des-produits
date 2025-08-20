@@ -3,9 +3,10 @@ import { Produit } from '../model/produit';
 import { ProduitService } from '../services/produit.service';
 
 @Component({
-  selector: 'app-produits',
-  templateUrl: './produits.component.html',
-  styleUrl: './produits.component.css',
+    selector: 'app-produits',
+    templateUrl: './produits.component.html',
+    styleUrl: './produits.component.css',
+    standalone: false
 })
 export class ProduitsComponent implements OnInit {
   produits: Produit[] = [];
