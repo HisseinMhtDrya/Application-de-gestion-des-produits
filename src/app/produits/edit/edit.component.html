@@ -1,1 +1,8 @@
-<p>edit works!</p>
+<form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+  <input formControlName="nom" placeholder="Nom">
+  <input formControlName="description" placeholder="Description">
+  <input formControlName="prix" type="number" placeholder="Prix">
+  <input formControlName="categorie" placeholder="Catégorie">
+  <input formControlName="stock" type="number" placeholder="Stock">
+  <button type="submit">Enregistrer</button>
+</form>

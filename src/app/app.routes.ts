@@ -13,6 +13,8 @@ export const appRoutes: Routes = [
 { path: 'produits/edit/:id', component: EditComponent, title: 'Modifier produit' },
 { path: 'produits/delete/:id', component: DeleteComponent, title: 'Supprimer produit' },
 { path: '**', redirectTo: '' },
-{ path: 'produits/create', component: CreateComponent }
+{ path: 'produits/create', component: CreateComponent },
+{ path: 'produits/edit/:id', component: EditComponent }
+
 
 ];

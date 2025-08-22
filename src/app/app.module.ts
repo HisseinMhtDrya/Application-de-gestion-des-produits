@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { CreateComponent } from './produits/create/create.component';
 import { EditComponent } from './produits/edit/edit.component';
 import { ReadComponent } from './produits/read/read.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'produits', component: ReadComponent },
   { path: 'produits/create', component: CreateComponent },
   { path: 'produits/edit/:id', component: EditComponent },
-  { path: '', redirectTo: 'produits', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' }
 ];
+
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ const routes: Routes = [
     CreateComponent,
     EditComponent,
     ReadComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

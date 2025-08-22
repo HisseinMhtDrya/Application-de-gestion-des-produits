@@ -1,10 +1,8 @@
-import { Categorie } from "./categrie";
-
 export interface Produit {
-  idProduit?: number;
-  nomProduit?: string;
-  descriptionProduit?: string;
-  prixProduit?: number;
-  dateCreation?: Date;
-  categorie?: Categorie;
+  id: number;
+  nom: string;
+  description: string;
+  prix: number;
+  categorie: string;
+  stock: number;
 }
