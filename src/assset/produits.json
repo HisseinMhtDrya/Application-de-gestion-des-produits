@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nom": "Ordinateur Portable",
+    "description": "Ordinateur portable performant 16Go RAM, SSD 512Go",
+    "prix": 1200,
+    "categorie": "Informatique",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "nom": "Smartphone",
+    "description": "Smartphone dernière génération avec caméra 108MP",
+    "prix": 800,
+    "categorie": "Téléphonie",
+    "stock": 25
+  },
+  {
+    "id": 3,
+    "nom": "Casque Audio",
+    "description": "Casque sans fil Bluetooth, réduction de bruit",
+    "prix": 150,
+    "categorie": "Audio",
+    "stock": 40
+  }
+]

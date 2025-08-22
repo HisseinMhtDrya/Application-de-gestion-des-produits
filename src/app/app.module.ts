@@ -1,32 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProduitsComponent } from './produits/produits.component';
-import { AddProduitComponent } from './add-produit/add-produit.component';
-import { FormsModule } from '@angular/forms';
-import { UpdateProduitComponent } from './update-produit/update-produit.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RechercheParCategorieComponent } from './rechercheParCategorie/rechercheParCategorie.component';
-import { RechercheParNomComponent } from './rechercheParNom/rechercheParNom.component';
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+import { AppComponent } from './app.component';
+import { CreateComponent } from './produits/create/create.component';
+import { EditComponent } from './produits/edit/edit.component';
+import { ReadComponent } from './produits/read/read.component';
+
+const routes: Routes = [
+  { path: 'produits', component: ReadComponent },
+  { path: 'produits/create', component: CreateComponent },
+  { path: 'produits/edit/:id', component: EditComponent },
+  { path: '', redirectTo: 'produits', pathMatch: 'full' },
+];
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
-    ProduitsComponent,
-    AddProduitComponent,
-    UpdateProduitComponent,
-    RechercheParCategorieComponent,
-      RechercheParNomComponent
-   ],
+    CreateComponent,
+    EditComponent,
+    ReadComponent,
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    CommonModule,
+    ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

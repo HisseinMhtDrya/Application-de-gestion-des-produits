@@ -1,1 +1,3 @@
- export const apiURL: string = 'http://localhost:9000/products_db/api';
+export const environment = {
+apiBase: 'http://localhost:3000', // json-server
+};
