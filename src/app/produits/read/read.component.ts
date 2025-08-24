@@ -24,12 +24,13 @@ export class ReadComponent implements OnInit {
 
   fetchProduits(): void {
     this.loading = true;
-    this.produitsService.getAll().subscribe({
+    // Changement ici : getAll() → getAllProducts()
+    this.produitsService.getAllProducts().subscribe({
       next: (data: Produit[]) => {
         this.produits = data;
         this.loading = false;
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Impossible de charger les produits';
         this.loading = false;
       }
@@ -49,5 +50,16 @@ export class ReadComponent implements OnInit {
         error: () => alert('Erreur lors de la suppression du produit')
       });
     }
+  }
+
+  voirProduit(produit: Produit): void {
+    alert(
+      `Détails du produit :
+Nom : ${produit.nom}
+Description : ${produit.description}
+Prix : ${produit.prix} FCFA
+Catégorie : ${produit.categorie}
+Stock : ${produit.stock}`
+    );
   }
 }

@@ -10,6 +10,7 @@ import { CreateComponent } from './produits/create/create.component';
 import { EditComponent } from './produits/edit/edit.component';
 import { ReadComponent } from './produits/read/read.component';
 import { HomeComponent } from './home/home.component';
+import { DetailComponent } from './produits/detail/detail.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,7 +21,6 @@ const routes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +28,7 @@ const routes: Routes = [
     EditComponent,
     ReadComponent,
     HomeComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +36,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
